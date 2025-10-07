@@ -1,0 +1,19 @@
+# Zoey Knowledge Base
+version: "1.0.0"
+title: "local test 1"
+description: ""
+created_at: "2025-10-07T12:26:38.371Z"
+
+overview: |
+  Describe the end goal and what success looks like.
+
+requirements:
+  functional: [] # e.g., ["Users can X", "System shall Y"]
+  non_functional: [] # e.g., performance, security, accessibility
+
+constraints: [] # frameworks, runtime, libraries, API limits
+
+acceptance_criteria: [] # clear, testable criteria
+
+notes: |
+  Add any context useful for the agent (data sources, domain language, etc.).
