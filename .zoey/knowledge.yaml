@@ -1,19 +1,24 @@
-# Zoey Knowledge Base
-version: "1.0.0"
-title: "local test 1"
-description: ""
-created_at: "2025-10-07T12:26:38.371Z"
-
-overview: |
-  Describe the end goal and what success looks like.
-
+version: 1.0.0
+title: E-Commerce Analytics Pipeline Challenge
+description: A data engineering challenge to build a robust E-Commerce Analytics
+  Pipeline for TechMart, processing millions of daily transactions and
+  generating real-time analytics using BigQuery, PostgreSQL, and GCP.
+created_at: 2025-10-07T12:26:38.371Z
+overview: The goal is to build a complete, scalable data pipeline for an
+  e-commerce company, TechMart. Success involves integrating multi-source data
+  (transactions, users, products), performing real-time analytics, and
+  maintaining high data quality standards. The challenge is designed for a
+  senior data engineer with 5+ years of experience with BigQuery and PostgreSQL
+  on GCP.
 requirements:
-  functional: [] # e.g., ["Users can X", "System shall Y"]
-  non_functional: [] # e.g., performance, security, accessibility
+  functional: []
+  non_functional: []
+constraints: []
+acceptance_criteria: []
+notes: >-
+  Technology Stack: PostgreSQL, Google BigQuery, Google Cloud Platform (GCP),
+  Python, Docker, Apache Airflow (Optional).
 
-constraints: [] # frameworks, runtime, libraries, API limits
+  Time Limit: 4 hours.
 
-acceptance_criteria: [] # clear, testable criteria
-
-notes: |
-  Add any context useful for the agent (data sources, domain language, etc.).
+  Deliverables: Complete pipeline code, documentation, and test results.

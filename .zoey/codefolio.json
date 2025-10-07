@@ -1,36 +1,75 @@
 {
   "version": "1.0.0",
-  "title": "local test 1 — Codefolio",
-  "description": "User-facing portfolio summary scaffold for this challenge.",
+  "title": "E-Commerce Analytics Pipeline Challenge — Codefolio",
+  "description": "A portfolio showcasing a comprehensive data engineering solution for an e-commerce analytics pipeline, integrating BigQuery, PostgreSQL, and GCP for real-time insights.",
   "created_at": "2025-10-07T12:26:38.371Z",
   "highlights": [
-    "What did you build?",
-    "Why is it valuable?"
+    "Developed a robust E-Commerce Analytics Pipeline",
+    "Integrated PostgreSQL and Google BigQuery on GCP",
+    "Enabled real-time analytics for millions of transactions",
+    "Ensured high data quality and reliability across the pipeline"
   ],
   "sections": [
     {
       "id": "overview",
       "type": "text",
       "title": "Challenge Overview",
-      "content": "This portfolio documents the implementation of local test 1."
+      "content": {
+        "text": "This portfolio documents the implementation of a comprehensive data engineering challenge: building a robust E-Commerce Analytics Pipeline for TechMart. The project involved integrating data from various sources (transactions, users, products), performing real-time analytics, and upholding stringent data quality standards. The solution is designed for a senior data engineer with 5+ years of experience with BigQuery and PostgreSQL on GCP."
+      }
     },
     {
       "id": "approach",
       "type": "text",
       "title": "Technical Approach",
-      "content": "The technical approach and methodology will be documented here."
+      "content": {
+        "text": "My approach involved designing a scalable data pipeline leveraging PostgreSQL for transactional data and Google BigQuery for analytics and reporting. I utilized Python for data extraction, transformation, and loading (ETL), ensuring data integrity and efficient processing. The pipeline prioritizes real-time capabilities and robust error handling within the Google Cloud Platform ecosystem."
+      }
     },
     {
       "id": "implementation",
       "type": "code",
       "title": "Key Implementation Details",
-      "content": "Code snippets and implementation details will be shown here."
+      "content": {
+        "code": "Code snippets and implementation details will be shown here, illustrating data extraction, transformation logic, schema definitions, and pipeline orchestration. Focus will be on efficient BigQuery and PostgreSQL interactions, configuration, data loading, and data quality checks.",
+        "language": "python",
+        "description": "Example: Data Extraction or Transformation Logic"
+      }
     },
     {
       "id": "results",
       "type": "text",
       "title": "Results and Learnings",
-      "content": "Results, performance metrics, and key learnings will be documented here."
+      "content": {
+        "text": "This section will detail the successful deployment and performance of the analytics pipeline, including data accuracy, processing latency, and scalability. It will also cover key learnings related to optimizing BigQuery queries, managing PostgreSQL data, and orchestrating complex data workflows on GCP."
+      }
+    },
+    {
+      "id": "tech-stack",
+      "type": "labels",
+      "title": "Technology Stack",
+      "content": {
+        "category": "Core Technologies",
+        "labels": [
+          "PostgreSQL",
+          "Google BigQuery",
+          "Google Cloud Platform (GCP)",
+          "Python",
+          "Docker",
+          "Apache Airflow (Optional)"
+        ]
+      }
+    },
+    {
+      "id": "project-structure",
+      "type": "code",
+      "title": "Project Structure",
+      "content": {
+        "code": "├── CHALLENGE_OVERVIEW.md\n├── REQUIREMENTS.md\n├── README.md\n├── requirements.txt\n├── data/\n│   ├── sample_transactions.json\n│   ├── sample_users.csv\n│   └── sample_products.json\n├── schemas/\n│   ├── postgres_schema.sql\n│   └── bigquery_schema.sql\n├── src/\n│   ├── config.py\n│   ├── data_extractor.py\n│   ├── data_transformer.py\n│   ├── database_manager.py\n│   └── pipeline.py\n└── tests/\n    ├── test_data_quality.py\n    ├── test_performance.py\n    └── test_integration.py",
+        "language": "plaintext",
+        "filename": "Project Structure Overview",
+        "description": "The organized repository structure supporting the E-Commerce Analytics Pipeline."
+      }
     }
   ]
 }

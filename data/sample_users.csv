@@ -1,0 +1,16 @@
+user_id,email,registration_date,country,age_group,customer_tier
+user_001,john.doe@email.com,2023-06-15,US,25-34,premium
+user_002,jane.smith@email.com,2023-08-22,CA,35-44,standard
+user_003,mike.wilson@email.com,2023-03-10,GB,18-24,vip
+user_004,sarah.jones@email.com,2023-11-05,AU,45-54,standard
+user_005,david.brown@email.com,2023-09-18,DE,25-34,premium
+user_006,emma.davis@email.com,2023-12-01,FR,25-34,standard
+user_007,alex.garcia@email.com,2023-07-14,ES,35-44,premium
+user_008,lisa.martinez@email.com,2023-10-30,IT,18-24,standard
+user_009,chris.anderson@email.com,2023-05-08,US,45-54,vip
+user_010,maria.rodriguez@email.com,2023-09-25,MX,25-34,standard
+user_011,james.taylor@email.com,2023-11-12,CA,35-44,premium
+user_012,anna.kowalski@email.com,2023-04-17,PL,25-34,standard
+user_013,thomas.muller@email.com,2023-08-03,DE,35-44,premium
+user_014,yuki.tanaka@email.com,2023-06-28,JP,18-24,standard
+user_015,olivia.white@email.com,2023-10-15,AU,25-34,vip

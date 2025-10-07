@@ -1,0 +1,152 @@
+[
+  {
+    "transaction_id": "txn_001",
+    "user_id": "user_001",
+    "product_id": "prod_001",
+    "amount": 999.99,
+    "currency": "USD",
+    "timestamp": "2024-01-15T10:30:00Z",
+    "payment_method": "credit_card",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_002",
+    "user_id": "user_002",
+    "product_id": "prod_002",
+    "amount": 899.99,
+    "currency": "USD",
+    "timestamp": "2024-01-15T11:15:00Z",
+    "payment_method": "paypal",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_003",
+    "user_id": "user_001",
+    "product_id": "prod_003",
+    "amount": 129.99,
+    "currency": "USD",
+    "timestamp": "2024-01-15T14:22:00Z",
+    "payment_method": "apple_pay",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_004",
+    "user_id": "user_003",
+    "product_id": "prod_004",
+    "amount": 49.99,
+    "currency": "USD",
+    "timestamp": "2024-01-15T16:45:00Z",
+    "payment_method": "debit_card",
+    "status": "failed"
+  },
+  {
+    "transaction_id": "txn_005",
+    "user_id": "user_004",
+    "product_id": "prod_005",
+    "amount": 79.99,
+    "currency": "USD",
+    "timestamp": "2024-01-15T18:30:00Z",
+    "payment_method": "google_pay",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_006",
+    "user_id": "user_002",
+    "product_id": "prod_001",
+    "amount": 999.99,
+    "currency": "EUR",
+    "timestamp": "2024-01-16T09:15:00Z",
+    "payment_method": "credit_card",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_007",
+    "user_id": "user_005",
+    "product_id": "prod_003",
+    "amount": 129.99,
+    "currency": "GBP",
+    "timestamp": "2024-01-16T11:30:00Z",
+    "payment_method": "paypal",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_008",
+    "user_id": "user_001",
+    "product_id": "prod_002",
+    "amount": 899.99,
+    "currency": "USD",
+    "timestamp": "2024-01-16T13:45:00Z",
+    "payment_method": "credit_card",
+    "status": "refunded"
+  },
+  {
+    "transaction_id": "txn_009",
+    "user_id": "user_003",
+    "product_id": "prod_004",
+    "amount": 49.99,
+    "currency": "CAD",
+    "timestamp": "2024-01-16T15:20:00Z",
+    "payment_method": "debit_card",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_010",
+    "user_id": "user_004",
+    "product_id": "prod_005",
+    "amount": 79.99,
+    "currency": "USD",
+    "timestamp": "2024-01-16T17:10:00Z",
+    "payment_method": "apple_pay",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_011",
+    "user_id": "user_002",
+    "product_id": "prod_001",
+    "amount": 999.99,
+    "currency": "USD",
+    "timestamp": "2024-01-17T08:30:00Z",
+    "payment_method": "credit_card",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_012",
+    "user_id": "user_005",
+    "product_id": "prod_002",
+    "amount": 899.99,
+    "currency": "EUR",
+    "timestamp": "2024-01-17T10:45:00Z",
+    "payment_method": "paypal",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_013",
+    "user_id": "user_001",
+    "product_id": "prod_003",
+    "amount": 129.99,
+    "currency": "USD",
+    "timestamp": "2024-01-17T12:15:00Z",
+    "payment_method": "google_pay",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_014",
+    "user_id": "user_003",
+    "product_id": "prod_004",
+    "amount": 49.99,
+    "currency": "GBP",
+    "timestamp": "2024-01-17T14:30:00Z",
+    "payment_method": "debit_card",
+    "status": "completed"
+  },
+  {
+    "transaction_id": "txn_015",
+    "user_id": "user_004",
+    "product_id": "prod_005",
+    "amount": 79.99,
+    "currency": "USD",
+    "timestamp": "2024-01-17T16:00:00Z",
+    "payment_method": "apple_pay",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "product_id": "prod_001",
+    "name": "iPhone 15 Pro",
+    "category": "Electronics",
+    "price": 999.99,
+    "inventory_count": 100,
+    "supplier_id": "supp_001"
+  },
+  {
+    "product_id": "prod_002",
+    "name": "Samsung Galaxy S24",
+    "category": "Electronics",
+    "price": 899.99,
+    "inventory_count": 150,
+    "supplier_id": "supp_002"
+  },
+  {
+    "product_id": "prod_003",
+    "name": "Nike Air Max",
+    "category": "Clothing",
+    "price": 129.99,
+    "inventory_count": 200,
+    "supplier_id": "supp_003"
+  },
+  {
+    "product_id": "prod_004",
+    "name": "Python Programming Book",
+    "category": "Books",
+    "price": 49.99,
+    "inventory_count": 50,
+    "supplier_id": "supp_004"
+  },
+  {
+    "product_id": "prod_005",
+    "name": "Coffee Maker",
+    "category": "Home & Garden",
+    "price": 79.99,
+    "inventory_count": 75,
+    "supplier_id": "supp_005"
+  },
+  {
+    "product_id": "prod_006",
+    "name": "MacBook Pro M3",
+    "category": "Electronics",
+    "price": 1999.99,
+    "inventory_count": 25,
+    "supplier_id": "supp_001"
+  },
+  {
+    "product_id": "prod_007",
+    "name": "Adidas Ultraboost",
+    "category": "Clothing",
+    "price": 180.00,
+    "inventory_count": 120,
+    "supplier_id": "supp_003"
+  },
+  {
+    "product_id": "prod_008",
+    "name": "Data Science Handbook",
+    "category": "Books",
+    "price": 79.99,
+    "inventory_count": 30,
+    "supplier_id": "supp_004"
+  },
+  {
+    "product_id": "prod_009",
+    "name": "Smart Home Hub",
+    "category": "Home & Garden",
+    "price": 149.99,
+    "inventory_count": 60,
+    "supplier_id": "supp_005"
+  },
+  {
+    "product_id": "prod_010",
+    "name": "Wireless Headphones",
+    "category": "Electronics",
+    "price": 199.99,
+    "inventory_count": 80,
+    "supplier_id": "supp_002"
+  }
+]
