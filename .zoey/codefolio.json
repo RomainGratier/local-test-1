@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "title": "local test 1 — Codefolio",
+  "description": "User-facing portfolio summary scaffold for this challenge.",
+  "created_at": "2025-10-07T12:26:38.371Z",
+  "highlights": [
+    "What did you build?",
+    "Why is it valuable?"
+  ],
+  "sections": [
+    {
+      "id": "overview",
+      "type": "text",
+      "title": "Challenge Overview",
+      "content": "This portfolio documents the implementation of local test 1."
+    },
+    {
+      "id": "approach",
+      "type": "text",
+      "title": "Technical Approach",
+      "content": "The technical approach and methodology will be documented here."
+    },
+    {
+      "id": "implementation",
+      "type": "code",
+      "title": "Key Implementation Details",
+      "content": "Code snippets and implementation details will be shown here."
+    },
+    {
+      "id": "results",
+      "type": "text",
+      "title": "Results and Learnings",
+      "content": "Results, performance metrics, and key learnings will be documented here."
+    }
+  ]
+}
