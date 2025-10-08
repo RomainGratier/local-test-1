@@ -48,7 +48,9 @@ class DatabaseManager:
                 
         except Exception as e:
             logger.error(f"Error initializing database connections: {e}")
-            raise
+            # Don't raise exception if only BigQuery fails
+            if "PostgreSQL" in str(e):
+                raise
     
     def _connect_postgres(self):
         """Connect to PostgreSQL database"""
@@ -84,8 +86,9 @@ class DatabaseManager:
             logger.info("Successfully connected to BigQuery")
             
         except Exception as e:
-            logger.error(f"Error connecting to BigQuery: {e}")
-            raise
+            logger.warning(f"Could not connect to BigQuery: {e}")
+            logger.warning("Continuing without BigQuery - analytics features will be limited")
+            self.bigquery_client = None
     
     @contextmanager
     def get_postgres_cursor(self):
@@ -99,8 +102,8 @@ class DatabaseManager:
             yield cursor
             
         except Exception as e:
-            if cursor:
-                cursor.rollback()
+            if self.postgres_conn and not self.postgres_conn.closed:
+                self.postgres_conn.rollback()
             logger.error(f"PostgreSQL error: {e}")
             raise
         finally:
@@ -143,14 +146,27 @@ class DatabaseManager:
         
         try:
             with self.get_postgres_cursor() as cursor:
+                # Get valid columns for the table
+                valid_columns = self._get_table_columns(cursor, table_name)
+                
+                # Filter data to only include valid columns
+                filtered_data = []
+                for record in data:
+                    filtered_record = {k: v for k, v in record.items() if k in valid_columns}
+                    filtered_data.append(filtered_record)
+                
+                if not filtered_data:
+                    logger.warning(f"No valid columns found for table {table_name}")
+                    return 0
+                
                 # Get column names from first record
-                columns = list(data[0].keys())
+                columns = list(filtered_data[0].keys())
                 placeholders = ', '.join(['%s'] * len(columns))
                 columns_str = ', '.join(columns)
                 
                 # Insert data in batches
-                for i in range(0, len(data), batch_size):
-                    batch = data[i:i + batch_size]
+                for i in range(0, len(filtered_data), batch_size):
+                    batch = filtered_data[i:i + batch_size]
                     
                     # Prepare batch data
                     batch_values = []
@@ -404,6 +420,23 @@ class DatabaseManager:
     
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close_connections()
+    
+    def _get_table_columns(self, cursor, table_name: str) -> set:
+        """Get valid column names for a table"""
+        try:
+            cursor.execute("""
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name = %s 
+                AND table_schema = 'public'
+            """, (table_name,))
+            
+            columns = {row[0] for row in cursor.fetchall()}
+            return columns
+            
+        except Exception as e:
+            logger.warning(f"Could not get columns for table {table_name}: {e}")
+            return set()
 
 # Example usage
 if __name__ == "__main__":

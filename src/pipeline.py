@@ -227,12 +227,7 @@ class ECommerceAnalyticsPipeline:
         try:
             loading_results = {}
             
-            # Load data into PostgreSQL
-            if 'transactions' in transformed_data:
-                loading_results['transactions_postgres'] = self.db_manager.insert_postgres_data(
-                    'transactions', transformed_data['transactions']
-                )
-            
+            # Load data into PostgreSQL in correct order (users and products first, then transactions)
             if 'users' in transformed_data:
                 loading_results['users_postgres'] = self.db_manager.insert_postgres_data(
                     'users', transformed_data['users']
@@ -241,6 +236,11 @@ class ECommerceAnalyticsPipeline:
             if 'products' in transformed_data:
                 loading_results['products_postgres'] = self.db_manager.insert_postgres_data(
                     'products', transformed_data['products']
+                )
+            
+            if 'transactions' in transformed_data:
+                loading_results['transactions_postgres'] = self.db_manager.insert_postgres_data(
+                    'transactions', transformed_data['transactions']
                 )
             
             # Load analytics tables into BigQuery

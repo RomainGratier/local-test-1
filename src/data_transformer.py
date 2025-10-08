@@ -129,12 +129,16 @@ class DataTransformer:
         """
         logger.info("Starting product transformation")
         
+        # Get category and supplier mappings
+        category_mapping = self._get_category_mapping()
+        supplier_mapping = self._get_supplier_mapping()
+        
         transformed_products = []
         
         for product in products:
             try:
                 # Base transformation
-                transformed_product = self._transform_single_product(product)
+                transformed_product = self._transform_single_product(product, category_mapping, supplier_mapping)
                 
                 # Calculate derived fields
                 transformed_product = self._calculate_product_derived_fields(transformed_product)
@@ -189,9 +193,9 @@ class DataTransformer:
     def _transform_single_transaction(self, txn: Dict[str, Any]) -> Dict[str, Any]:
         """Transform a single transaction"""
         return {
-            'transaction_id': txn['transaction_id'],
-            'user_id': txn['user_id'],
-            'product_id': txn['product_id'],
+            'transaction_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, txn['transaction_id'])),
+            'user_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, txn['user_id'])),
+            'product_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, txn['product_id'])),
             'amount': float(txn['amount']),
             'currency': txn['currency'],
             'payment_method': txn.get('payment_method', 'unknown'),
@@ -205,7 +209,7 @@ class DataTransformer:
     def _transform_single_user(self, user: Dict[str, Any]) -> Dict[str, Any]:
         """Transform a single user"""
         return {
-            'user_id': user['user_id'],
+            'user_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, user['user_id'])),
             'email': user['email'],
             'country': user['country'],
             'age_group': user.get('age_group'),
@@ -214,16 +218,19 @@ class DataTransformer:
             'is_active': user.get('is_active', True)
         }
     
-    def _transform_single_product(self, product: Dict[str, Any]) -> Dict[str, Any]:
+    def _transform_single_product(self, product: Dict[str, Any], category_mapping: Dict[str, str], supplier_mapping: Dict[str, str]) -> Dict[str, Any]:
         """Transform a single product"""
+        category_name = product.get('category', 'Electronics')
+        supplier_id = product.get('supplier_id', 'supp_001')
+        
         return {
-            'product_id': product['product_id'],
+            'product_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, product['product_id'])),
             'name': product['name'],
-            'category': product.get('category'),
-            'price': float(product['price']),
+            'category_id': category_mapping.get(category_name, list(category_mapping.values())[0]),
+            'supplier_id': supplier_mapping.get(supplier_id, list(supplier_mapping.values())[0]),
+            'base_price': float(product['price']),
             'currency': product.get('currency', 'USD'),
             'inventory_count': int(product.get('inventory_count', 0)),
-            'supplier_id': product.get('supplier_id'),
             'price_usd': self._convert_to_usd(float(product['price']), product.get('currency', 'USD'))
         }
     
@@ -314,6 +321,28 @@ class DataTransformer:
         """Convert amount to USD"""
         rate = self.currency_rates.get(currency, 1.0)
         return amount / rate
+    
+    def _get_category_mapping(self) -> Dict[str, str]:
+        """Get category name to ID mapping"""
+        # Using the actual UUIDs from the database
+        return {
+            'Electronics': '65a6e4ca-8414-46b8-9a05-07d36e31411c',
+            'Clothing': '7c146cb4-1384-4205-b4b0-f0ace49513c8', 
+            'Books': '168505f8-7af3-4ce0-b502-2e0452cae779',
+            'Home & Garden': '963acb38-1f69-4e1f-8b05-94847d3a4856',
+            'Sports': 'b12cdb26-abb6-4f89-9cb3-d61868a93428'
+        }
+    
+    def _get_supplier_mapping(self) -> Dict[str, str]:
+        """Get supplier ID to UUID mapping"""
+        # Using the actual UUIDs from the database
+        return {
+            'supp_001': '402dbd2b-a845-47b3-ba77-845572f172b5',
+            'supp_002': 'ba5942ad-8a5d-48bc-a4f4-06a12fa2992d',
+            'supp_003': '4408d40d-8e25-4544-af31-94720feeee27',
+            'supp_004': '20002a4c-fd28-44e4-960a-ba16f3f79976',
+            'supp_005': '5c7e0517-a6a6-4cf4-8ef0-62f4971db916'
+        }
     
     def _create_daily_sales_summary(self, transactions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Create daily sales summary table"""

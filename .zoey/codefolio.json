@@ -7,7 +7,8 @@
     "Developed a robust E-Commerce Analytics Pipeline",
     "Integrated PostgreSQL and Google BigQuery on GCP",
     "Enabled real-time analytics for millions of transactions",
-    "Ensured high data quality and reliability across the pipeline"
+    "Ensured high data quality and reliability across the pipeline",
+    "Implemented UUID-based identifiers for improved data integrity and consistency"
   ],
   "sections": [
     {
@@ -23,17 +24,18 @@
       "type": "text",
       "title": "Technical Approach",
       "content": {
-        "text": "My approach involved designing a scalable data pipeline leveraging PostgreSQL for transactional data and Google BigQuery for analytics and reporting. I utilized Python for data extraction, transformation, and loading (ETL), ensuring data integrity and efficient processing. The pipeline prioritizes real-time capabilities and robust error handling within the Google Cloud Platform ecosystem."
+        "text": "My approach involved designing a scalable data pipeline leveraging PostgreSQL for transactional data and Google BigQuery for analytics and reporting. I utilized Python for data extraction, transformation, and loading (ETL), ensuring robust data integrity through standardized identifiers and efficient processing. The pipeline prioritizes real-time capabilities and robust error handling within the Google Cloud Platform ecosystem."
       }
     },
     {
       "id": "implementation",
-      "type": "code",
-      "title": "Key Implementation Details",
+      "type": "git_diff",
+      "title": "Enhanced Data Transformation with UUIDs and Mappings",
       "content": {
-        "code": "Code snippets and implementation details will be shown here, illustrating data extraction, transformation logic, schema definitions, and pipeline orchestration. Focus will be on efficient BigQuery and PostgreSQL interactions, configuration, data loading, and data quality checks.",
-        "language": "python",
-        "description": "Example: Data Extraction or Transformation Logic"
+        "diff": "diff --git a/src/data_transformer.py b/src/data_transformer.py\nindex 93aaf53..65858f7 100644\n--- a/src/data_transformer.py\n+++ b/src/data_transformer.py\n@@ -129,12 +129,16 @@ class DataTransformer:\n         \"\"\"\n         logger.info(\"Starting product transformation\")\n         \n+        # Get category and supplier mappings\n+        category_mapping = self._get_category_mapping()\n+        supplier_mapping = self._get_supplier_mapping()\n+        \n         transformed_products = []\n         \n         for product in products:\n             try:\n                 # Base transformation\n-                transformed_product = self._transform_single_product(product)\n+                transformed_product = self._transform_single_product(product, category_mapping, supplier_mapping)\n                 \n                 # Calculate derived fields\n                 transformed_product = self._calculate_product_derived_fields(transformed_product)\n@@ -189,9 +193,9 @@ class DataTransformer:\n     def _transform_single_transaction(self, txn: Dict[str, Any]) -> Dict[str, Any]:\n         \"\"\"Transform a single transaction\"\"\"\n         return {\n-            'transaction_id': txn['transaction_id'],\n-            'user_id': txn['user_id'],\n-            'product_id': txn['product_id'],\n+            'transaction_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, txn['transaction_id'])),\n+            'user_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, txn['user_id'])),\n+            'product_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, txn['product_id'])),\n             'amount': float(txn['amount']),\n             'currency': txn['currency'],\n             'payment_method': txn.get('payment_method', 'unknown'),\n@@ -205,7 +209,7 @@ class DataTransformer:\n     def _transform_single_user(self, user: Dict[str, Any]) -> Dict[str, Any]:\n         \"\"\"Transform a single user\"\"\"\n         return {\n-            'user_id': user['user_id'],\n+            'user_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, user['user_id'])),\n             'email': user['email'],\n             'country': user['country'],\n             'age_group': user.get('age_group'),\n@@ -214,16 +218,19 @@ class DataTransformer:\n             'is_active': user.get('is_active', True)\n         }\n     \n-    def _transform_single_product(self, product: Dict[str, Any]) -> Dict[str, Any]:\n+    def _transform_single_product(self, product: Dict[str, Any], category_mapping: Dict[str, str], supplier_mapping: Dict[str, str]) -> Dict[str, Any]:\n         \"\"\"Transform a single product\"\"\"\n+        category_name = product.get('category', 'Electronics')\n+        supplier_id = product.get('supplier_id', 'supp_001')\n+        \n         return {\n-            'product_id': product['product_id'],\n+            'product_id': str(uuid.uuid5(uuid.NAMESPACE_DNS, product['product_id'])),\n             'name': product['name'],\n-            'category': product.get('category'),\n-            'price': float(product['price']),\n+            'category_id': category_mapping.get(category_name, list(category_mapping.values())[0]),\n+            'supplier_id': supplier_mapping.get(supplier_id, list(supplier_mapping.values())[0]),\n+            'base_price': float(product['price']),\n             'currency': product.get('currency', 'USD'),\n             'inventory_count': int(product.get('inventory_count', 0)),\n-            'supplier_id': product.get('supplier_id'),\n             'price_usd': self._convert_to_usd(float(product['price']), product.get('currency', 'USD'))\n         }\n     \n@@ -315,6 +322,28 @@ class DataTransformer:\n         rate = self.currency_rates.get(currency, 1.0)\n         return amount / rate\n     \n+    def _get_category_mapping(self) -> Dict[str, str]:\n+        \"\"\"Get category name to ID mapping\"\"\"\n+        # Using the actual UUIDs from the database\n+        return {\n+            'Electronics': '65a6e4ca-8414-46b8-9a05-07d36e31411c',\n+            'Clothing': '7c146cb4-1384-4205-b4b0-f0ace49513c8', \n+            'Books': '168505f8-7af3-4ce0-b502-2e0452cae779',\n+            '\n\n... (truncated)",
+        "repository": "e-commerce-pipeline",
+        "commit_sha": "65858f7",
+        "description": "Updated data transformation logic to introduce UUID-based identifiers for transactions, users, and products, along with standardized category and supplier mappings. The 'price' field was also renamed to 'base_price' for clarity."
       }
     },
     {
